@@ -18,6 +18,7 @@ package rollouts
 
 import (
 	"context"
+	"fmt"
 
 	rolloutsmanagerv1alpha1 "github.com/argoproj-labs/argo-rollouts-manager/api/v1alpha1"
 	monitoringv1 "github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring/v1"
@@ -92,8 +93,19 @@ const (
 // For more details, check Reconcile and its Result here:
 // - https://pkg.go.dev/sigs.k8s.io/controller-runtime@v0.14.1/pkg/reconcile
 func (r *RolloutManagerReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
+
+	fmt.Println("JGW Reconcile called!!!!!!!!!!!!!!!!!!!!")
+
 	reqLogger := logr.FromContext(ctx, "Request.Namespace", req.Namespace, "Request.Name", req.Name)
 	reqLogger.Info("Reconciling RolloutManager")
+
+	reqLogger.Error(nil, "JGW HI0")
+
+	reqLogger.Info("JGW RECONCILE2")
+
+	log.Info("JGW hi?")
+
+	log.Error(nil, "JGW hi2")
 
 	// First retrieve the Namespace of the request: if it's being deleted, no more work for us.
 	rolloutManagerNamespace := corev1.Namespace{ObjectMeta: metav1.ObjectMeta{Name: req.Namespace}}
@@ -141,6 +153,9 @@ func (r *RolloutManagerReconciler) Reconcile(ctx context.Context, req ctrl.Reque
 
 // SetupWithManager sets up the controller with the Manager.
 func (r *RolloutManagerReconciler) SetupWithManager(mgr ctrl.Manager) error {
+
+	fmt.Println("JGW ROLLOUTS SETUPWITHMANAGER")
+
 	bld := ctrl.NewControllerManagedBy(mgr)
 	// Watch for changes to primary resource RolloutManager.
 	bld.For(&rolloutsmanagerv1alpha1.RolloutManager{})
