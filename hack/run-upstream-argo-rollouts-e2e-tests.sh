@@ -27,9 +27,9 @@ go mod tidy
 
 # 2) Setup the Namespace
 
-kubectl delete ns argo-rollouts || true
+kubectl delete ns argo-rollouts 
 
-kubectl wait --timeout=5m --for=delete namespace/argo-rollouts 
+##kubectl wait --timeout=5m --for=delete namespace/argo-rollouts 
 
 kubectl create ns argo-rollouts
 kubectl config set-context --current --namespace=argo-rollouts
